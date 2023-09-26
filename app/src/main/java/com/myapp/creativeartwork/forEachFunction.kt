@@ -11,10 +11,16 @@ var cookie = listOf(Cookies("PriyaGold",true,20),
                     Cookies("Nutri",    true,80)
 )
 fun main(){
+    cookie.forEach { println("Menu Item: ${it.cookieName},is delicious ${it.cookieDelicious},and price:${it.cookiePrice}") }
+    println("-------------------------")
     // in this map we convert one type to another
     val fullMenue = cookie.map { "${it.cookieName}-$${it.cookiePrice}" }
     println("FullMenue")
     fullMenue.forEach { println(it) }
-    //cookie.forEach { println("Menu Item: ${it.cookieName},is delicious ${it.cookieDelicious},and price:${it.cookiePrice}") }
+    println("-----------------------------")
+    //Now when we want to filter our list then we use filter() function
+    val cookieMenue = cookie.filter { it.cookieDelicious }
+    println("CookieMenue")
+    cookieMenue.forEach {println("${it.cookieName}-$${it.cookiePrice}") }
 }
 
