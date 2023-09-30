@@ -10,17 +10,30 @@ data class Event(
 enum class EventDayPart {
     Morning, Afternoon, Evening
 }
+
 val event = mutableListOf<Event>(
-    Event("Study Kotlin", "Commit to studying Kotlin at least 15 minutes per day.", EventDayPart.Evening, 15),
+    Event(
+        "Study Kotlin",
+        "Commit to studying Kotlin at least 15 minutes per day.",
+        EventDayPart.Evening,
+        15
+    ),
     Event("Wake Up", "Time to get up", EventDayPart.Morning, 10),
     Event("Eat Food", null, EventDayPart.Afternoon, 20),
     Event("Pratice Compose", null, EventDayPart.Evening, 60)
 )
-
+val Event.durationOfEvent=
 
 fun main() {
-val shortEvent = event.filter { it.eventDuration<60 }
-println("Event Less then 60 min")
+    val shortEvent = event.filter { it.eventDuration < 60 }
+    println("Event Less then 60 min")
     shortEvent.forEach { println("The Tiltle of event is:${it.eventTitle},The event Time:${it.eventDayPart} and event duration ${it.eventDuration}") }
+    println()
+    println("-----------------")
+    val eventSummary = event.groupBy { it.eventDayPart }
+    eventSummary.forEach { (EventDayPart, event) -> println("$EventDayPart:${event.size} events") }
+    println()
+    println("--------------------")
+    println("The Last event : ${event[event.size-1].eventTitle}")
 
 }
